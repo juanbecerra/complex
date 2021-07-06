@@ -1,0 +1,21 @@
+script:
+  - docker run -e CI=true USERNAME/react-test npm test
+
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t jbecerra/test-client -f ./client/Dockerfile.dev ./client
+script:
+  - docker run -e CI=true jbecerra/complex-client npm run test
+
+after-success:
+  - docker build -t jbecerra/complex-client ./client
+  - docker build -t jbecerra/complex-server ./server
+  - docker build -t jbecerra/complex-ngnx ./web
+  - docker build -t jbecerra/complex-worker ./worker
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker push jbecerra/complex-client
+  - docker push jbecerra/complex-server
+  - docker push jbecerra/complex-ngnx
+  - docker push jbecerra/complex-worker
