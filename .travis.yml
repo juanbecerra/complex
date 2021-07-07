@@ -4,7 +4,7 @@ services:
 before_install:
   - docker build -t jbecerra/test-client -f ./client/Dockerfile.dev ./client
 script:
-  - docker run -e CI=true jbecerra/complex-client npm run test
+  - docker run -e CI=true jbecerra/test-client npm run test
 
 after-success:
   - docker build -t jbecerra/complex-client ./client
