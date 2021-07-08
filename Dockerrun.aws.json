@@ -1,0 +1,35 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "jbecerra/complex-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "jbecerra/complex-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "api",
+            "image": "jbecerra/complex-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "web",
+            "image": "jbecerra/complex-ngnx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort" : 80,
+                    "containerPort": 80
+                }
+            ],
+            "Links":["client","api"]
+        }
+    ]
+}

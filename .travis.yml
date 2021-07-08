@@ -16,3 +16,15 @@ after-success:
   - docker push jbecerra/complex-server
   - docker push jbecerra/complex-ngnx
   - docker push jbecerra/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "Complex"
+  env: "Complex-env"
+  bucket_name: "elasticbeanstalk-us-east-1-189524978108"
+  bucket_path: "Complex"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
