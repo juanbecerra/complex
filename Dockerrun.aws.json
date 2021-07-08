@@ -5,19 +5,22 @@
             "name": "client",
             "image": "jbecerra/complex-client",
             "hostname": "client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "worker",
             "image": "jbecerra/complex-worker",
             "hostname": "worker",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "api",
             "image": "jbecerra/complex-server",
             "hostname": "api",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "web",
@@ -29,7 +32,8 @@
                     "containerPort": 80
                 }
             ],
-            "Links":["client","api"]
+            "Links":["client","api"],
+            "memory": 128
         }
     ]
 }
