@@ -32,7 +32,7 @@
                     "containerPort": 80
                 }
             ],
-            "Links":["client","api"],
+            "links":["client","api"],
             "memory": 128
         }
     ]
